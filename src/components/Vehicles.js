@@ -1,24 +1,24 @@
 import React from 'react';
 import { Card, Grid } from 'semantic-ui-react';
 
-export default function People({ data }) {
+export default function Vehicles({ data }) {
   return (
     <>
-      <h1>People</h1>
+      <h1>Vehicles</h1>
       <Grid columns={3}>
-        {data.map((person, i) => {
+        {data.map((vehicle, i) => {
           return (
             <Grid.Column key={i}>
               <Card>
                 <Card.Content>
-                  <Card.Header>{person.name}</Card.Header>
+                  <Card.Header>{vehicle.name}</Card.Header>
                   <Card.Description>
-                    <strong>Height</strong>
-                    <p>{person.height}</p>
-                    <strong>Mass</strong>
-                    <p>{person.mass}</p>
-                    <strong>Hair Colour</strong>
-                    <p>{person.hair_color}</p>
+                    <strong>Model</strong>
+                    <p>{vehicle.model}</p>
+                    <strong>Class</strong>
+                    <p>{vehicle.vehicle_class}</p>
+                    <strong>Crew</strong>
+                    <p>{vehicle.crew}</p>
                   </Card.Description>
                 </Card.Content>
               </Card>

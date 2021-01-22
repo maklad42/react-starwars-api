@@ -5,10 +5,14 @@ import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import Home from './components/Home';
 import People from './components/People';
 import Planets from './components/Planets';
+import Starships from './components/Starships';
+import Vehicles from './components/Vehicles';
 
 function App() {
   const [people, setPeople] = useState([]);
   const [planets, setPlanets] = useState([]);
+  const [starships, setStarships] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,8 +30,24 @@ function App() {
       setLoading(false);
     }
 
+    async function fetchStarships() {
+      let res = await fetch('https://swapi.dev/api/starships/');
+      let data = await res.json();
+      setStarships(data.results);
+      setLoading(false);
+    }
+
+    async function fetchVehicles() {
+      let res = await fetch('https://swapi.dev/api/vehicles/');
+      let data = await res.json();
+      setVehicles(data.results);
+      setLoading(false);
+    }
+
     fetchPeople();
     fetchPlanets();
+    fetchStarships();
+    fetchVehicles();
   }, []);
 
   return (
@@ -49,6 +69,12 @@ function App() {
               </Route>
               <Route exact path="/planets">
                 <Planets data={planets} />
+              </Route>
+              <Route exact path="/ships">
+                <Starships data={starships} />
+              </Route>
+              <Route exact path="/vehicles">
+                <Vehicles data={vehicles} />
               </Route>
             </Switch>
           )}
