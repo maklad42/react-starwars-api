@@ -17,30 +17,54 @@ function App() {
 
   useEffect(() => {
     async function fetchPeople() {
-      let res = await fetch('https://swapi.dev/api/people');
-      let data = await res.json();
-      setPeople(data.results);
+      let url = 'https://swapi.dev/api/people';
+      let data = [];
+      do {
+        let res = await fetch(url);
+        let tmpData = await res.json();
+        data.push(...tmpData.results);
+        url = tmpData.next;
+      } while (url != null);
+      setPeople(data);
       setLoading(false);
     }
 
     async function fetchPlanets() {
-      let res = await fetch('https://swapi.dev/api/planets/');
-      let data = await res.json();
-      setPlanets(data.results);
+      let url = 'https://swapi.dev/api/planets/';
+      let data = [];
+      do {
+        let res = await fetch(url);
+        let tmpData = await res.json();
+        data.push(...tmpData.results);
+        url = tmpData.next;
+      } while (url != null);
+      setPlanets(data);
       setLoading(false);
     }
 
     async function fetchStarships() {
-      let res = await fetch('https://swapi.dev/api/starships/');
-      let data = await res.json();
-      setStarships(data.results);
+      let url = 'https://swapi.dev/api/starships/';
+      let data = [];
+      do {
+        let res = await fetch(url);
+        let tmpData = await res.json();
+        data.push(...tmpData.results);
+        url = tmpData.next;
+      } while (url != null);
+      setStarships(data);
       setLoading(false);
     }
 
     async function fetchVehicles() {
-      let res = await fetch('https://swapi.dev/api/vehicles/');
-      let data = await res.json();
-      setVehicles(data.results);
+      let url = 'https://swapi.dev/api/vehicles/';
+      let data = [];
+      do {
+        let res = await fetch(url);
+        let tmpData = await res.json();
+        data.push(...tmpData.results);
+        url = tmpData.next;
+      } while (url != null);
+      setVehicles(data);
       setLoading(false);
     }
 
