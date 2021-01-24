@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Grid } from 'semantic-ui-react';
+import Details from './components/Details';
 
 export default function People({ data }) {
   return (
@@ -19,6 +20,8 @@ export default function People({ data }) {
                     <p>{person.mass}</p>
                     <strong>Hair Colour</strong>
                     <p>{person.hair_color}</p>
+                    <Details data={person} />
+                    <p>More...</p>
                   </Card.Description>
                 </Card.Content>
               </Card>
