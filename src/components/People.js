@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Grid } from 'semantic-ui-react';
-import Details from './components/Details';
+import Details from './Details';
 
 export default function People({ data }) {
   return (
