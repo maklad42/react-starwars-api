@@ -18,12 +18,17 @@ class App2 extends React.Component {
   };
 
   componentDidMount() {
-    fetch('https://swapi.dev/api/people')
-      .then((res) => res.json())
-      .then((res) => {
-        this.setState({ people: res.results });
-      })
-      .catch(console.log);
+    let urlPeople = 'https://swapi.dev/api/people';
+    let dataPeople = [];
+    do {
+      fetch(urlPeople)
+        .then((res) => res.json())
+        .catch(console.log);
+      dataPeople.push(...res.results);
+      urlPeople = res.results.next;
+    } while (urlPeople != null);
+    this.setState({ people: dataPeople });
+
     fetch('https://swapi.dev/api/planets')
       .then((res) => res.json())
       .then((res) => {
