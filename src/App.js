@@ -25,6 +25,7 @@ function App() {
         data.push(...tmpData.results);
         url = tmpData.next;
       } while (url != null);
+      data.map((v) => (v['details'] = false));
       setPeople(data);
       setLoading(false);
     }

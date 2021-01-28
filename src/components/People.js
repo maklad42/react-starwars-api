@@ -3,6 +3,10 @@ import { Card, Grid } from 'semantic-ui-react';
 import Details from './Details';
 
 export default function People({ data }) {
+  function showMore(data, i) {
+    console.log(data[i].details);
+  }
+
   return (
     <>
       <h1>People</h1>
@@ -20,8 +24,14 @@ export default function People({ data }) {
                     <p>{person.mass}</p>
                     <strong>Hair Colour</strong>
                     <p>{person.hair_color}</p>
-                    <Details data={person} />
-                    <p>More...</p>
+                    {person.details && <Details data={person} />}
+                    {person.details ? (
+                      'Showing details'
+                    ) : (
+                      <button onClick={() => showMore(data, i)}>
+                        Show more...
+                      </button>
+                    )}
                   </Card.Description>
                 </Card.Content>
               </Card>
