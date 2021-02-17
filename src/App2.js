@@ -14,6 +14,8 @@ class App2 extends React.Component {
     planets: [],
     starships: [],
     vehicles: [],
+    species: [],
+    films: [],
     loading: true,
   };
 

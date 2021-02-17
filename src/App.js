@@ -7,12 +7,16 @@ import People from './components/People';
 import Planets from './components/Planets';
 import Starships from './components/Starships';
 import Vehicles from './components/Vehicles';
+import Species from './components/Species';
+import Films from './components/Films';
 
 function App() {
   const [people, setPeople] = useState([]);
   const [planets, setPlanets] = useState([]);
   const [starships, setStarships] = useState([]);
   const [vehicles, setVehicles] = useState([]);
+  const [species, setSpecies] = useState([]);
+  const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -69,10 +73,38 @@ function App() {
       setLoading(false);
     }
 
+    async function fetchSpecies() {
+      let url = 'https://swapi.dev/api/species/';
+      let data = [];
+      do {
+        let res = await fetch(url);
+        let tmpData = await res.json();
+        data.push(...tmpData.results);
+        url = tmpData.next;
+      } while (url != null);
+      setSpecies(data);
+      setLoading(false);
+    }
+
+    async function fetchFilms() {
+      let url = 'https://swapi.dev/api/films/';
+      let data = [];
+      do {
+        let res = await fetch(url);
+        let tmpData = await res.json();
+        data.push(...tmpData.results);
+        url = tmpData.next;
+      } while (url != null);
+      setFilms(data);
+      setLoading(false);
+    }
+
     fetchPeople();
     fetchPlanets();
     fetchStarships();
     fetchVehicles();
+    fetchSpecies();
+    fetchFilms();
   }, []);
 
   return (
@@ -100,6 +132,12 @@ function App() {
               </Route>
               <Route exact path="/vehicles">
                 <Vehicles data={vehicles} />
+              </Route>
+              <Route exact path="/species">
+                <Species data={species} />
+              </Route>
+              <Route exact path="/films">
+                <Films data={films} />
               </Route>
             </Switch>
           )}

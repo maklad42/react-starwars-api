@@ -21,6 +21,12 @@ export default function Navbar() {
         <Link to="/vehicles">
           <Menu.Item name="vehicles"></Menu.Item>
         </Link>
+        <Link to="/species">
+          <Menu.Item name="species"></Menu.Item>
+        </Link>
+        <Link to="films">
+          <Menu.Item name="films"></Menu.Item>"
+        </Link>
       </Container>
     </Menu>
   );
